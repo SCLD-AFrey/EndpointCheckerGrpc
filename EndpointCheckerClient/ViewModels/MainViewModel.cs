@@ -5,6 +5,7 @@ using DevExpress.Mvvm.POCO;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Net;
 using DevExpress.Mvvm.Native;
 using Grpc;
 using Grpc.Core;
@@ -29,13 +30,16 @@ namespace EndpointCheckerClient.ViewModels
 
         protected MainViewModel()
         {
+            ipaddress = "127.0.0.1";
+            port = "50051";
             string jsonFile = "../../../../EndpointChecker/endpoint-list.json";
+            outText = "Client Started" + Environment.NewLine;
+
             using (StreamReader r = new StreamReader(jsonFile))
             {
-                string json = r.ReadToEnd();
-                JsonList = json;
-                TextOut = "Client Started" + Environment.NewLine;
+                endpointJson = r.ReadToEnd();
             }
+
         }
 
         public static MainViewModel Create()
@@ -47,26 +51,34 @@ namespace EndpointCheckerClient.ViewModels
 
         #region Fields and Properties
 
-        public virtual string JsonList { get; set; }
-        public virtual string TextOut { get; set; }
+        public virtual string endpointJson { get; set; }
+        public virtual string outText { get; set; }
+        public virtual EndpointChecker.EndpointChecker.EndpointCheckerClient client { get; set; }
+        public virtual Channel channel { get; set; }
+        public virtual List<EndpointItem> items { get; set; }
+        public virtual string ipaddress { get; set; }
+        public virtual string port { get; set; }
 
         #endregion
 
         #region Methods
         public void OnProcessButtonCommand()
         {
-
-            TextOut += "Processing..." + Environment.NewLine;
-            Channel channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
-            var client = new EndpointChecker.EndpointChecker.EndpointCheckerClient(channel);
-
-            ProcessEndpointList(client);
-            TextOut += "Complete" + Environment.NewLine;
+            items = JsonConvert.DeserializeObject<List<EndpointItem>>(endpointJson);
+            outText += "Processing..." + Environment.NewLine;
+            CreateChannel();
+            ProcessEndpointList();
+            outText += "Complete" + Environment.NewLine;
         }
 
-        private void ProcessEndpointList(EndpointChecker.EndpointChecker.EndpointCheckerClient client)
+        public void CreateChannel()
         {
-            List<EndpointItem> items = JsonConvert.DeserializeObject<List<EndpointItem>>(JsonList);
+            channel = new Channel(string.Concat(ipaddress, ":", port), ChannelCredentials.Insecure);
+            client = new EndpointChecker.EndpointChecker.EndpointCheckerClient(channel);
+        }
+
+        private void ProcessEndpointList()
+        {
 
             var s = client.ReturnSuccess();
 
@@ -74,23 +86,17 @@ namespace EndpointCheckerClient.ViewModels
             {
                 if (i.Name != null)
                 {
-
-
                     try
                     {
                         var newreply = client.CheckEndpoint(new EndpointRequest
                             { Name = i.Name, IPaddress = i.IPaddress, Platform = i.Platform });
-                        TextOut += "Checking: " + newreply.Message + Environment.NewLine;
+                        outText += "Checking: " + newreply.Message + Environment.NewLine;
 
                     }
                     catch (Exception e)
                     {
-                        TextOut += "Exception: " + e.Message + Environment.NewLine;
+                        outText += "Exception: " + e.Message + Environment.NewLine;
                     }
-
-
-                    
-
                 }
             }
         }
