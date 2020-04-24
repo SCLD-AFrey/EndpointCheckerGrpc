@@ -23,4 +23,8 @@ message EndpointRequest {
 message EndpointReply {
 	string Message = 1;
 	bool Success = 2;
+	string Error = 3;
+	string StartTime = 4;
+	string EndTime = 5;
+	int32 TransactionTime = 6;
 }

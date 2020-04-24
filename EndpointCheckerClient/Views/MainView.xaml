@@ -19,10 +19,11 @@
             <RowDefinition Height="22"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-
+ 
         <dx:SimpleButton Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Content="Process" Command="{Binding ProcessButtonCommand}"></dx:SimpleButton>
         <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding JsonList}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding TextOut}"></TextBox>
+        <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding TextOut}"></TextBlock>
+
 
     </Grid>
 </UserControl>
