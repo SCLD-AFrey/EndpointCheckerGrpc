@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevExpress.Xpo" Version="19.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EndpointChecker\EndpointChecker.csproj" />
   </ItemGroup>
 
