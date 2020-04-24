@@ -26,5 +26,4 @@ message EndpointReply {
 	string Error = 3;
 	string StartTime = 4;
 	string EndTime = 5;
-	int32 TransactionTime = 6;
 }

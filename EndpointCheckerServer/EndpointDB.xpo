@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataBaseObjectModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="61103304-a61b-43c7-b138-2e32f32679cf" namespace="EndpointChecker" dataBaseShemaInfo="H4sIAAAAAAAEAOVYUW/bNhB+L9D/IPhpA0KblEiJLGQXi50WQdciqNNhrxR5tIXKlCHJTtJfP0qWPdtJOi8T5of4QdZ9d7y7jzzSZ8bv7xeZt4aiTHM77JE+7r0fvX0TX8oSplVeyBlcW5N7zsqW7+7LdNibV9Xy3WBwd3fXvwv6eTEb+BiTwZ+ff5+qOSwkSm1ZSaugtxul/3lUz0X1vPhWJhmUdchG3iJ7wBbyvsgFDHtXVi/z1FbjOajvvZ2Nsxrn2Wphyz3IgZPLDextvm4fls7Hta0Cv9c6THXPm1zWila2Vc8bnOBlWhWpnW3d1M+eN01/uHeGD13atSzUXBa/MPzrS3xf30itCyjLbQDyXADysgA3maxMXiy6I3CZ5xlIuw0wXSnV5L/vNUlfNNOfnSNXpttcfcaeSdZpjrKNB4+LJL62Gu6hPDT8kBeQzuwneNhXxIOmFI8qsw47OqjL1q5R7GyvbDPWyKyEeNBKO+0kLWvg21LLamd0CO5sP65Sfa1HuP2gJx7bTzxojXeD2xk42GHPwk5Rk9goR6mOB3vigdlP2f1bhv+Z5d5Sv4Ro/fpKqO7OllfCd3vUvRK67cH7Sti2Pw2vhG3zU3ObnnBUVcWqW7qGRtxEXCMWYoUoVxwlCgBFmtKAgCJO6JruVVHkxf9PNQqYYApHKBQmRDSABImQEoTBKCkohIaKzndtJYvqPCuLNQ6FMgolMtSIYqlRwn2OgggnATBIWBR0vrJWn4dsgFkEGhNkRODK2IQEyYgJpIASpQwwQcjJZJ9C20bwlP83j7tIKH7WRz45GS9pI7ngWPnCd6yJjyh1ay9YIBAPBA+oDjhjSadt5EndVedrLYOQA/YlikxCERUakFQmQiQhRIYQai7Z+Zqr7umaBDMlOKKhSBAlPkOSYoN8TmXEFSRUyLP1Vt2zFX4UaKWRO69cDSdGI8mwjwJNI0h8PzBCnau16pys0lhTExhEBCeISsKRCAhGoXT1TUPNeHj6qdVxZ9V9pyEw4RQYon7gHiExiPsJQYIz7RPBBE5O37anHNGt/LdJXN+Lgb4pctWA7X1A/MfmEm00gfXV/bLe5f2JrGR/TUTfv/Ba9bCW+lEfX3jjVVatChhaWFWFzC68m1WSpeoTPNzm38EOE841iRjVEcbQbM9tiCbeOJNlCWW9AF9Xu9mNf9MuNTDp/e6eooamK3MAfYVFvoZjww16bDuWJYy+WTWXdgbuL38jb6bmqRxiNzNLKKr0zLk9k0b8ESwUrrzG+WIBtirbGn0EHxhPoExn7vVD6krhaMShrhn2ZZVlddVcwlyu07xwRWGkW263X441b9/Eg6Pb1tFfqmCfIpYVAAA=" generateConnectionHelper="true" generateStoredProcedures="false" fieldNameCase="Unchanged" generateDefaultConstructors="false" useNameOf="true" connectionStringName="EndpointCheckerConn" createdInVersion="19.2.7.0" generateJsonSerializationContractResolver="false" generateServiceCollectionExtensions="true" lastModifiedInVersion="19.2.7.0" name="EndpointChecker" xmlns="http://schemas.microsoft.com/dsltools/ORMDataModel">
+  <classes>
+    <dataBaseObjectModelHasClasses Id="e25b7e0f-df96-4cc9-98df-e1d9da76c8a1">
+      <xpObject Id="8980c292-ce12-44fc-9539-839834d3855b" name="EndpointCheck" baseClass="XPObject" userFileName="EndpointCheck" designerFileName="EndpointCheck.Designer" className="EndpointCheck" virtualName="EndpointCheck">
+        <fields>
+          <generalXpObjectHasFields Id="16e25892-f330-4ed4-a329-84e0badbc4e5">
+            <field Id="a368e02a-7fb4-49de-acf7-1b11a6e6d8a5" name="Name" virtualColumnType="String" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="45178bb7-6edf-40af-9084-e88213492427">
+            <field Id="afb05c98-469b-4125-a40f-284a78ceb49a" name="IPaddress" virtualColumnType="String" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="09159ab9-33fb-43cd-a762-6ee46a83c47a">
+            <field Id="a9273dcd-0ad2-4bfd-a502-3d47eb223f9c" name="Platform" virtualColumnType="String" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="dcaa18f6-2bd7-4110-b68e-7a5eaf8b1550">
+            <field Id="cd0d4f3f-1981-4a18-9310-6ae0246d5861" name="Success" columnType="Boolean" virtualColumnType="Boolean" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="7828f0aa-eebc-4966-b68a-b9ab91477f77">
+            <field Id="73595c07-69f6-43eb-9641-0efca94e6f49" name="Error" virtualColumnType="String" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="fdc52497-d2b2-48fc-9198-bc8347eec934">
+            <field Id="0d069cfc-ba6d-40ad-b828-370b3e5eb573" name="StartTime" columnType="DateTime" virtualColumnType="DateTime" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="6d21aceb-9fe6-4d97-9410-9155377f142e">
+            <field Id="e4307ea9-e76d-41db-b5ca-0a603a41e269" name="EndTime" columnType="DateTime" virtualColumnType="DateTime" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+  </classes>
+</dataBaseObjectModel>

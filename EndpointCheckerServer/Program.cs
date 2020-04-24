@@ -11,18 +11,45 @@ namespace EndpointCheckerServer
 {
     class EndpointCheckerImpl : EndpointChecker.EndpointChecker.EndpointCheckerBase
     {
+        class Program
+        {
+            const string Host = "127.0.0.1";
+            const int Port = 50051;
 
+            public static void Main(string[] args)
+            {
+                //XPO Database Connections
+                IConfiguration AppConfiguration = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+                ConnectionHelper.Connect(AppConfiguration, autoCreateOption: AutoCreateOption.DatabaseAndSchema);
+
+                Server server = new Server
+                {
+                    Services = { EndpointChecker.EndpointChecker.BindService(new EndpointCheckerImpl()) },
+                    Ports = { new ServerPort(Host, Port, ServerCredentials.Insecure) }
+                };
+                server.Start();
+
+                Console.WriteLine("Server listening on port " + Port);
+                Console.WriteLine("Press any key to stop the server...");
+                Console.ReadKey();
+
+                server.ShutdownAsync().Wait();
+            }
+        }
 
         public override Task<EndpointReply> CheckEndpoint(EndpointRequest request, ServerCallContext context)
         {
             var lErrors = new List<string>();
             var reply = new EndpointReply
             {
-                StartTime = DateTime.Now.ToString(), 
-                Success = true
+                StartTime = DateTime.Now.ToString(),
+                Success = true,
+                Error = "none"
             };
 
-
+            // DO TESTS
             if (request.Platform.ToLower() != "windows")
             {
                 reply.Success = false;
@@ -35,15 +62,22 @@ namespace EndpointCheckerServer
                 lErrors.Add(request.IPaddress + " not within IP range of 10.*.*.*");
             }
 
+            reply.EndTime = DateTime.Now.ToString();
+            reply.Message = string.Format("Server {0} at {1} returned a Success of {2}",
+                request.Name,
+                request.IPaddress,
+                reply.Success.ToString()
+            );
 
-
-            InsertCheck(request, reply);
-            reply.Message = String.Format("Server {0} at {1} returned a Success of {2}",request.Name,request.IPaddress,reply.Success.ToString());
+            //Check for succcess
             if (!reply.Success)
             {
-                reply.Error = string.Join(",", lErrors);
+                reply.Error = string.Join(", ", lErrors);
                 reply.Message += " due to " + reply.Error;
             }
+
+            //Add result to DB
+            InsertCheck(request, reply);
 
             return Task.FromResult(reply);
         }
@@ -52,12 +86,6 @@ namespace EndpointCheckerServer
         {
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                reply.EndTime = DateTime.Now.ToString();
-
-                TimeSpan tranSpan = DateTime.Parse(reply.EndTime) - DateTime.Parse(reply.StartTime);
-
-
-                reply.TransactionTime = tranSpan.Milliseconds;
                 EndpointCheck check = new EndpointCheck(unitOfWork)
                 {
                     Name = request.Name,
@@ -70,34 +98,6 @@ namespace EndpointCheckerServer
                 };
                 unitOfWork.CommitChanges();
             }
-        }
-
-    }
-
-
-    class Program
-    {
-        const int Port = 50051;
-
-        public static void Main(string[] args)
-        {
-            IConfiguration AppConfiguration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
-            ConnectionHelper.Connect(AppConfiguration, autoCreateOption: AutoCreateOption.DatabaseAndSchema);
-
-            Server server = new Server
-            {
-                Services = { EndpointChecker.EndpointChecker.BindService(new EndpointCheckerImpl()) },
-                Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
-            };
-            server.Start();
-
-            Console.WriteLine("Server listening on port " + Port);
-            Console.WriteLine("Press any key to stop the server...");
-            Console.ReadKey();
-
-            server.ShutdownAsync().Wait();
         }
     }
 }

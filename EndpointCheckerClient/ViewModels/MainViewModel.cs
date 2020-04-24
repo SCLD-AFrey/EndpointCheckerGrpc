@@ -1,13 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using DevExpress.Mvvm.DataAnnotations;
-using DevExpress.Mvvm.POCO;
-
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Net;
-using DevExpress.Mvvm.Native;
-using Grpc;
+using System.ComponentModel.DataAnnotations;
+using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 using Grpc.Core;
 using EndpointChecker;
 using Newtonsoft.Json;
@@ -30,11 +26,12 @@ namespace EndpointCheckerClient.ViewModels
 
         protected MainViewModel()
         {
-            ipaddress = "127.0.0.1";
-            port = "50051";
+            //Config
+            Host = "127.0.0.1";
+            Port = "50051";
             string jsonFile = "../../../../EndpointChecker/endpoint-list.json";
-            outText = "Client Started" + Environment.NewLine;
 
+            //Load initial json file
             using (StreamReader r = new StreamReader(jsonFile))
             {
                 endpointJson = r.ReadToEnd();
@@ -56,8 +53,8 @@ namespace EndpointCheckerClient.ViewModels
         public virtual EndpointChecker.EndpointChecker.EndpointCheckerClient client { get; set; }
         public virtual Channel channel { get; set; }
         public virtual List<EndpointItem> items { get; set; }
-        public virtual string ipaddress { get; set; }
-        public virtual string port { get; set; }
+        public virtual string Host { get; set; }
+        public virtual string Port { get; set; }
 
         #endregion
 
@@ -73,15 +70,12 @@ namespace EndpointCheckerClient.ViewModels
 
         public void CreateChannel()
         {
-            channel = new Channel(string.Concat(ipaddress, ":", port), ChannelCredentials.Insecure);
+            channel = new Channel(string.Concat(Host, ":", Port), ChannelCredentials.Insecure);
             client = new EndpointChecker.EndpointChecker.EndpointCheckerClient(channel);
         }
 
         private void ProcessEndpointList()
         {
-
-            var s = client.ReturnSuccess();
-
             foreach (var i in items)
             {
                 if (i.Name != null)
