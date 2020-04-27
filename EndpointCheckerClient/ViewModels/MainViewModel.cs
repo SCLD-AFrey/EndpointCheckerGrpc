@@ -75,8 +75,6 @@ namespace EndpointCheckerClient.ViewModels
             ProcessEndpointListByEntry();
             outText += "Complete" + Environment.NewLine;
         }
-
-
         public void OnProcessButtonListCommand()
         {
             outText = "Processing..." + Environment.NewLine;
@@ -99,8 +97,8 @@ namespace EndpointCheckerClient.ViewModels
             {
                 var endpointrequest = new EndpointRequest
                     {Name = endpointItem.Name, IPaddress = endpointItem.IPaddress, Platform = endpointItem.Platform};
-                var reply = client.CheckEndpoint(endpointrequest);
-                
+                var reply = client.CheckEndpointAsync(endpointrequest).ResponseAsync.Result;
+ 
                 endpointItem.Success = reply.Success;
                 endpointItem.StartTime = DateTime.Parse(reply.StartTime);
                 endpointItem.EndTime = DateTime.Parse(reply.EndTime);
