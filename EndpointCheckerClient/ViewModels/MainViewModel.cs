@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using Grpc.Core;
@@ -70,29 +71,53 @@ namespace EndpointCheckerClient.ViewModels
 
         public void CreateChannel()
         {
-            channel = new Channel(string.Concat(Host, ":", Port), ChannelCredentials.Insecure);
+            var channelCreds = new SslCredentials();
+
+
+            channel = new Channel(string.Concat(Host, ":", Port), ChannelCredentials.Insecure); //--- without SSL
+            //channel = new Channel(string.Concat(Host, ":", Port), channelCreds);
             client = new EndpointChecker.EndpointChecker.EndpointCheckerClient(channel);
         }
 
         private void ProcessEndpointList()
         {
-            foreach (var i in items)
+            foreach (var _endpoint in items)
             {
-                if (i.Name != null)
-                {
-                    try
-                    {
-                        var newreply = client.CheckEndpoint(new EndpointRequest
-                            { Name = i.Name, IPaddress = i.IPaddress, Platform = i.Platform });
-                        outText += "Checking: " + newreply.Message + Environment.NewLine;
+                var endpoint = ProcessEndpoint(_endpoint);
+                outText += String.Format("Checking: {0} @ {1} - Passed={2} Error={3}", endpoint.Name, endpoint.IPaddress, endpoint.Success.ToString(), endpoint.Error) + Environment.NewLine;
 
-                    }
-                    catch (Exception e)
-                    {
-                        outText += "Exception: " + e.Message + Environment.NewLine;
-                    }
+            }
+        }
+
+        private EndpointItem ProcessEndpoint(EndpointItem endpoint)
+        {
+            if (endpoint.Name != null)
+            {
+                try
+                {
+                    var reply = client.CheckEndpoint(new EndpointRequest
+                        { Name = endpoint.Name, IPaddress = endpoint.IPaddress, Platform = endpoint.Platform });
+
+                    endpoint.Success = reply.Success;
+                    endpoint.Error = reply.Error.Split("|");
+                    endpoint.StartTime = DateTime.Parse(reply.StartTime);
+                    endpoint.EndTime = DateTime.Parse(reply.EndTime);
+
+                }
+                catch (Exception e)
+                {
+                    endpoint.Success = false;
+                    Array.Resize(ref endpoint.Error, endpoint.Error.Length + 1);
+                    endpoint.Error[^1] = "FAILURE: " + e.Message;
                 }
             }
+            else
+            {
+                Array.Resize(ref endpoint.Error, endpoint.Error.Length + 1);
+                endpoint.Error[^1] = "FAILURE: Endpoint is invalid";
+            }
+
+            return endpoint;
         }
 
         #endregion

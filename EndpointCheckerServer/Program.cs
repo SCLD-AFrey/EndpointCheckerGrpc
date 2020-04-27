@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Grpc.Core;
-using EndpointChecker;
-using DevExpress.Xpo;
+﻿using DevExpress.Xpo;
 using DevExpress.Xpo.DB;
+using EndpointChecker;
+using Grpc.Core;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EndpointCheckerServer
 {
@@ -18,11 +18,14 @@ namespace EndpointCheckerServer
 
             public static void Main(string[] args)
             {
-                //XPO Database Connections
+                #region Configuration
+                
                 IConfiguration AppConfiguration = new ConfigurationBuilder()
                     .AddJsonFile("appsettings.json")
                     .Build();
                 ConnectionHelper.Connect(AppConfiguration, autoCreateOption: AutoCreateOption.DatabaseAndSchema);
+
+                #endregion
 
                 Server server = new Server
                 {
@@ -38,6 +41,7 @@ namespace EndpointCheckerServer
                 server.ShutdownAsync().Wait();
             }
         }
+
 
         public override Task<EndpointReply> CheckEndpoint(EndpointRequest request, ServerCallContext context)
         {
@@ -63,17 +67,11 @@ namespace EndpointCheckerServer
             }
 
             reply.EndTime = DateTime.Now.ToString();
-            reply.Message = string.Format("Server {0} at {1} returned a Success of {2}",
-                request.Name,
-                request.IPaddress,
-                reply.Success.ToString()
-            );
 
             //Check for succcess
             if (!reply.Success)
             {
                 reply.Error = string.Join(", ", lErrors);
-                reply.Message += " due to " + reply.Error;
             }
 
             //Add result to DB

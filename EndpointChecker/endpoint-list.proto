@@ -9,9 +9,10 @@ option objc_class_prefix = "HLW";
 package EndpointChecker;
 
 service EndpointChecker {
-  // Sends a greeting
   rpc CheckEndpoint (EndpointRequest) returns (EndpointReply) {}
 }
+
+// userful https://developers.google.com/protocol-buffers/docs/proto3
 
 message EndpointRequest {
 	string Name = 1;
@@ -19,11 +20,9 @@ message EndpointRequest {
 	string Platform = 3;
 }
 
-// The response message containing the greetings
 message EndpointReply {
-	string Message = 1;
-	bool Success = 2;
-	string Error = 3;
-	string StartTime = 4;
-	string EndTime = 5;
+	bool Success = 1;
+	string Error = 2;
+	string StartTime = 3;
+	string EndTime = 4;
 }

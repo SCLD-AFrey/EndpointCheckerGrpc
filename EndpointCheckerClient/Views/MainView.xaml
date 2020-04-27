@@ -12,7 +12,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -22,7 +22,7 @@
  
         <dx:SimpleButton Grid.Column="1" Grid.Row="0" Width="150" Content="Process" Command="{Binding ProcessButtonCommand}"></dx:SimpleButton>
         <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding endpointJson}"></TextBox>
-        <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding outText}"></TextBlock>
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding outText}"></TextBox>
 
 
     </Grid>
