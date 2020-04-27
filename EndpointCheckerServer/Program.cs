@@ -80,7 +80,6 @@ namespace EndpointCheckerServer
             var items = JsonConvert.DeserializeObject<List<EndpointItem>>(request.Content);
             var successList = new List<EndpointItem>();
             var faiList = new List<EndpointItem>();
-            var lErrors = new List<string>();
 
             foreach (var item in items)
             {
@@ -90,13 +89,11 @@ namespace EndpointCheckerServer
                 if (item.Platform.ToLower() != "windows")
                 {
                     item.Success = false;
-                    lErrors.Add(item.Platform + " not allowed");
                 }
 
                 if (!item.IPaddress.StartsWith("10."))
                 {
                     item.Success = false;
-                    lErrors.Add(item.IPaddress + " not within IP range of 10.*.*.*");
                 }
 
                 if (item.Success)

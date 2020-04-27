@@ -38,6 +38,7 @@ namespace EndpointCheckerClient.ViewModels
             {
                 endpointJson = r.ReadToEnd();
             }
+            CreateChannel();
 
         }
 
@@ -71,22 +72,27 @@ namespace EndpointCheckerClient.ViewModels
         {
             items = JsonConvert.DeserializeObject<List<EndpointItem>>(endpointJson);
             outText = "Processing..." + Environment.NewLine;
-            CreateChannel();
             ProcessEndpointListByEntry();
             outText += "Complete" + Environment.NewLine;
         }
 
-        private void ProcessEndpointListByEntry()
+
+        public void OnProcessButtonListCommand()
+        {
+            outText = "Processing..." + Environment.NewLine;
+            ProcessFullList();
+        }
+        private async void ProcessEndpointListByEntry()
         {
             foreach (var _endpoint in items)
             {
-                var endpoint = ProcessEndpoint(_endpoint);
+                var endpointTask = ProcessEndpoint(_endpoint);
+                var endpoint = await endpointTask;
                 outText += String.Format("Checking: {0} @ {1} - Passed={2}", endpoint.Name, endpoint.IPaddress, endpoint.Success.ToString()) + Environment.NewLine;
-
             }
         }
 
-        private EndpointItem ProcessEndpoint(EndpointItem endpointItem)
+        private async Task<EndpointItem> ProcessEndpoint(EndpointItem endpointItem)
         {
 
             try
@@ -109,18 +115,12 @@ namespace EndpointCheckerClient.ViewModels
             return endpointItem;
         }
 
-        public void OnProcessButtonListCommand()
+        private void ProcessFullList()
         {
-            var requestList = endpointJson;
-            outText = "Processing..." + Environment.NewLine;
-            
-            CreateChannel();
-
             var endpointrequest = new EndpointListRequest
             {
-                Content = requestList
+                Content = endpointJson
             };
-
             var reply = client.CheckEndpointList(endpointrequest);
 
             var successList = JsonConvert.DeserializeObject<List<EndpointItem>>(reply.SuccessList);
