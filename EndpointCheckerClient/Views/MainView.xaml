@@ -25,7 +25,7 @@
             <dx:SimpleButton Width="150" Content="Process Whole List" Command="{Binding ProcessButtonListCommand}"></dx:SimpleButton>
         </StackPanel>
         <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding endpointJson}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding outText}"></TextBox>
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding Path=outText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
 
     </Grid>
