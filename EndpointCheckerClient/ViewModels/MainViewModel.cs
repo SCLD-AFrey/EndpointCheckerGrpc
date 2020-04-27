@@ -83,9 +83,15 @@ namespace EndpointCheckerClient.ViewModels
         {
             foreach (var _endpoint in items)
             {
-                var endpoint = ProcessEndpoint(_endpoint);
+                //var endpoint = ProcessEndpoint(_endpoint);
+                var endpoint = ProcessEndpointAsync(_endpoint).Result;
                 outText += String.Format("Checking: {0} @ {1} - Passed={2} Error={3}", endpoint.Name, endpoint.IPaddress, endpoint.Success.ToString(), endpoint.Error) + Environment.NewLine;
 
+            }
+
+            async Task<EndpointItem> ProcessEndpointAsync(EndpointItem item)
+            {
+                return ProcessEndpoint(item);
             }
         }
 
