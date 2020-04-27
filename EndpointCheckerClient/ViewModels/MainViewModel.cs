@@ -20,6 +20,7 @@ namespace EndpointCheckerClient.ViewModels
                 (MetadataBuilder<MainViewModel> p_builder)
             {
                 p_builder.CommandFromMethod(p_x => p_x.OnProcessButtonCommand()).CommandName("ProcessButtonCommand");
+                p_builder.CommandFromMethod(p_x => p_x.OnProcessButtonListCommand()).CommandName("ProcessButtonListCommand");
             }
         }
 
@@ -59,65 +60,78 @@ namespace EndpointCheckerClient.ViewModels
 
         #endregion
 
+        public void CreateChannel()
+        {
+            channel = new Channel(string.Concat(Host, ":", Port), ChannelCredentials.Insecure); //--- without SSL
+            client = new EndpointChecker.EndpointChecker.EndpointCheckerClient(channel);
+        }
+
         #region Methods
         public void OnProcessButtonCommand()
         {
             items = JsonConvert.DeserializeObject<List<EndpointItem>>(endpointJson);
-            outText += "Processing..." + Environment.NewLine;
+            outText = "Processing..." + Environment.NewLine;
             CreateChannel();
-            ProcessEndpointList();
+            ProcessEndpointListByEntry();
             outText += "Complete" + Environment.NewLine;
         }
 
-        public void CreateChannel()
-        {
-            var channelCreds = new SslCredentials();
-
-
-            channel = new Channel(string.Concat(Host, ":", Port), ChannelCredentials.Insecure); //--- without SSL
-            //channel = new Channel(string.Concat(Host, ":", Port), channelCreds);
-            client = new EndpointChecker.EndpointChecker.EndpointCheckerClient(channel);
-        }
-
-        private void ProcessEndpointList()
+        private void ProcessEndpointListByEntry()
         {
             foreach (var _endpoint in items)
             {
                 var endpoint = ProcessEndpoint(_endpoint);
-                outText += String.Format("Checking: {0} @ {1} - Passed={2} Error={3}", endpoint.Name, endpoint.IPaddress, endpoint.Success.ToString(), endpoint.Error) + Environment.NewLine;
+                outText += String.Format("Checking: {0} @ {1} - Passed={2}", endpoint.Name, endpoint.IPaddress, endpoint.Success.ToString()) + Environment.NewLine;
 
             }
         }
 
-        private EndpointItem ProcessEndpoint(EndpointItem endpoint)
+        private EndpointItem ProcessEndpoint(EndpointItem endpointItem)
         {
-            if (endpoint.Name != null)
+
+            try
             {
-                try
-                {
-                    var reply = client.CheckEndpoint(new EndpointRequest
-                        { Name = endpoint.Name, IPaddress = endpoint.IPaddress, Platform = endpoint.Platform });
+                var endpointrequest = new EndpointRequest
+                    {Name = endpointItem.Name, IPaddress = endpointItem.IPaddress, Platform = endpointItem.Platform};
+                var reply = client.CheckEndpoint(endpointrequest);
+                
+                endpointItem.Success = reply.Success;
+                endpointItem.StartTime = DateTime.Parse(reply.StartTime);
+                endpointItem.EndTime = DateTime.Parse(reply.EndTime);
 
-                    endpoint.Success = reply.Success;
-                    endpoint.Error = reply.Error.Split("|");
-                    endpoint.StartTime = DateTime.Parse(reply.StartTime);
-                    endpoint.EndTime = DateTime.Parse(reply.EndTime);
-
-                }
-                catch (Exception e)
-                {
-                    endpoint.Success = false;
-                    Array.Resize(ref endpoint.Error, endpoint.Error.Length + 1);
-                    endpoint.Error[^1] = "FAILURE: " + e.Message;
-                }
             }
-            else
+            catch (Exception e)
             {
-                Array.Resize(ref endpoint.Error, endpoint.Error.Length + 1);
-                endpoint.Error[^1] = "FAILURE: Endpoint is invalid";
+                endpointItem.Success = false;
             }
 
-            return endpoint;
+
+            return endpointItem;
+        }
+
+        public void OnProcessButtonListCommand()
+        {
+            var requestList = endpointJson;
+            outText = "Processing..." + Environment.NewLine;
+            
+            CreateChannel();
+
+            var endpointrequest = new EndpointListRequest
+            {
+                Content = requestList
+            };
+
+            var reply = client.CheckEndpointList(endpointrequest);
+
+            var successList = JsonConvert.DeserializeObject<List<EndpointItem>>(reply.SuccessList);
+            var failList = JsonConvert.DeserializeObject<List<EndpointItem>>(reply.FailList);
+
+            outText += "Started: " + reply.StartTime + Environment.NewLine;
+            outText += "SUCCESS: " + successList.Count + Environment.NewLine;
+            outText += "FAILED: " + failList.Count + Environment.NewLine;
+            outText += "End: " + reply.EndTime + Environment.NewLine;
+
+            outText += "Complete" + Environment.NewLine;
         }
 
         #endregion

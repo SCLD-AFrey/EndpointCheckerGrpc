@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace EndpointCheckerServer
 {
@@ -34,7 +35,7 @@ namespace EndpointCheckerServer
                 };
                 server.Start();
 
-                Console.WriteLine("Server listening on port " + Port);
+                Console.WriteLine("Server listening on " + Host + " port " + Port);
                 Console.WriteLine("Press any key to stop the server...");
                 Console.ReadKey();
 
@@ -42,40 +43,75 @@ namespace EndpointCheckerServer
             }
         }
 
-
         public override Task<EndpointReply> CheckEndpoint(EndpointRequest request, ServerCallContext context)
         {
-            var lErrors = new List<string>();
             var reply = new EndpointReply
             {
                 StartTime = DateTime.Now.ToString(),
                 Success = true,
-                Error = "none"
             };
 
             // DO TESTS
             if (request.Platform.ToLower() != "windows")
             {
                 reply.Success = false;
-                lErrors.Add(request.Platform + " not allowed");
             }
 
             if (!request.IPaddress.StartsWith("10."))
             {
                 reply.Success = false;
-                lErrors.Add(request.IPaddress + " not within IP range of 10.*.*.*");
             }
 
             reply.EndTime = DateTime.Now.ToString();
 
-            //Check for succcess
-            if (!reply.Success)
-            {
-                reply.Error = string.Join(", ", lErrors);
-            }
-
             //Add result to DB
             InsertCheck(request, reply);
+
+            return Task.FromResult(reply);
+        }
+
+
+        public override Task<EndpointListReply> CheckEndpointList(EndpointListRequest request, ServerCallContext context)
+        {
+            var reply = new EndpointListReply
+            {
+                StartTime = DateTime.Now.ToString()
+            };
+            var items = JsonConvert.DeserializeObject<List<EndpointItem>>(request.Content);
+            var successList = new List<EndpointItem>();
+            var faiList = new List<EndpointItem>();
+            var lErrors = new List<string>();
+
+            foreach (var item in items)
+            {
+                item.Success = true;
+
+                // DO TESTS
+                if (item.Platform.ToLower() != "windows")
+                {
+                    item.Success = false;
+                    lErrors.Add(item.Platform + " not allowed");
+                }
+
+                if (!item.IPaddress.StartsWith("10."))
+                {
+                    item.Success = false;
+                    lErrors.Add(item.IPaddress + " not within IP range of 10.*.*.*");
+                }
+
+                if (item.Success)
+                {
+                    successList.Add(item);
+                } else
+                {
+                    faiList.Add(item);
+                }
+
+            }
+
+            reply.SuccessList = JsonConvert.SerializeObject(successList);
+            reply.FailList = JsonConvert.SerializeObject(faiList);
+            reply.EndTime = DateTime.Now.ToString();
 
             return Task.FromResult(reply);
         }
@@ -90,12 +126,15 @@ namespace EndpointCheckerServer
                     IPaddress = request.IPaddress,
                     Platform = request.Platform,
                     Success = reply.Success,
-                    Error = reply.Error,
                     StartTime = DateTime.Parse(reply.StartTime),
                     EndTime = DateTime.Parse(reply.EndTime)
                 };
                 unitOfWork.CommitChanges();
             }
         }
+
+
+
+
     }
 }

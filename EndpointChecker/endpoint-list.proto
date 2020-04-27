@@ -10,6 +10,7 @@ package EndpointChecker;
 
 service EndpointChecker {
   rpc CheckEndpoint (EndpointRequest) returns (EndpointReply) {}
+  rpc CheckEndpointList (EndpointListRequest) returns (EndpointListReply) {}
 }
 
 // userful https://developers.google.com/protocol-buffers/docs/proto3
@@ -22,7 +23,17 @@ message EndpointRequest {
 
 message EndpointReply {
 	bool Success = 1;
-	string Error = 2;
+	string StartTime = 2;
+	string EndTime = 3;
+}
+
+message EndpointListRequest{
+	string Content = 1;
+}
+
+message EndpointListReply{
+	string SuccessList = 1;
+	string FailList = 2;
 	string StartTime = 3;
 	string EndTime = 4;
 }
