@@ -1,0 +1,167 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointCheckerClient\\EndpointCheckerClient.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointCheckerClient\\EndpointCheckerClient.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointCheckerClient\\EndpointCheckerClient.csproj",
+        "projectName": "EndpointCheckerClient",
+        "projectPath": "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointCheckerClient\\EndpointCheckerClient.csproj",
+        "packagesPath": "C:\\Users\\AFrey\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointCheckerClient\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\AFrey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/89i4e4l4svNZAkJIVcRNOZ6TNcXFAMLWZ9kNtTNx15Cxtk142Q/api": {},
+          "https://nuget.pkg.github.com/SteelCloudLLC/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointChecker\\EndpointChecker.csproj": {
+                "projectPath": "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointChecker\\EndpointChecker.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "DevExpress.WindowsDesktop.Wpf": {
+              "target": "Package",
+              "version": "[19.2.*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointChecker\\EndpointChecker.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointChecker\\EndpointChecker.csproj",
+        "projectName": "EndpointChecker",
+        "projectPath": "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointChecker\\EndpointChecker.csproj",
+        "packagesPath": "C:\\Users\\AFrey\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointChecker\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\AFrey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/89i4e4l4svNZAkJIVcRNOZ6TNcXFAMLWZ9kNtTNx15Cxtk142Q/api": {},
+          "https://nuget.pkg.github.com/SteelCloudLLC/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.11.4, )"
+            },
+            "Grpc": {
+              "target": "Package",
+              "version": "[2.28.1, )"
+            },
+            "Grpc.Net.Client": {
+              "target": "Package",
+              "version": "[2.28.0, )"
+            },
+            "Grpc.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.28.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

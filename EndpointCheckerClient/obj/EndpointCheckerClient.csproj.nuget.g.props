@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\AFrey\.nuget\packages\;C:\Microsoft\Xamarin\NuGet\;C:\Program Files\dotnet\sdk\NuGetFallbackFolder</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.5.0</NuGetToolVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)devexpress.windowsdesktop.data\19.2.7\build\DevExpress.WindowsDesktop.Data.props" Condition="Exists('$(NuGetPackageRoot)devexpress.windowsdesktop.data\19.2.7\build\DevExpress.WindowsDesktop.Data.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgDevExpress_WindowsDesktop_Wpf_Core Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Core)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.core\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Core>
+    <PkgDevExpress_WindowsDesktop_Wpf_TreeMap Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_TreeMap)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.treemap\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_TreeMap>
+    <PkgDevExpress_WindowsDesktop_Wpf_Ribbon Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Ribbon)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.ribbon\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Ribbon>
+    <PkgDevExpress_WindowsDesktop_Wpf_PropertyGrid Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_PropertyGrid)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.propertygrid\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_PropertyGrid>
+    <PkgDevExpress_WindowsDesktop_Wpf_LayoutControl Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_LayoutControl)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.layoutcontrol\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_LayoutControl>
+    <PkgDevExpress_WindowsDesktop_Wpf_Layout_Core Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Layout_Core)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.layout.core\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Layout_Core>
+    <PkgDevExpress_WindowsDesktop_Wpf_Grid_Core Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Grid_Core)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.grid.core\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Grid_Core>
+    <PkgDevExpress_WindowsDesktop_Wpf_DocumentViewer_Core Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_DocumentViewer_Core)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.documentviewer.core\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_DocumentViewer_Core>
+    <PkgDevExpress_WindowsDesktop_Wpf_Docking Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Docking)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.docking\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Docking>
+    <PkgDevExpress_WindowsDesktop_Wpf_Printing Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Printing)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.printing\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Printing>
+    <PkgDevExpress_WindowsDesktop_Wpf_Controls Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Controls)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.controls\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Controls>
+    <PkgDevExpress_WindowsDesktop_Wpf_NavBar Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_NavBar)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.navbar\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_NavBar>
+    <PkgDevExpress_WindowsDesktop_Wpf_Charts Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Charts)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.charts\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Charts>
+    <PkgDevExpress_WindowsDesktop_Wpf_Spreadsheet Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Spreadsheet)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.spreadsheet\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Spreadsheet>
+    <PkgDevExpress_WindowsDesktop_Wpf_SpellChecker Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_SpellChecker)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.spellchecker\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_SpellChecker>
+    <PkgDevExpress_WindowsDesktop_Wpf_Scheduling Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Scheduling)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.scheduling\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Scheduling>
+    <PkgDevExpress_WindowsDesktop_Wpf_RichEdit Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_RichEdit)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.richedit\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_RichEdit>
+    <PkgDevExpress_WindowsDesktop_Wpf_Grid_Printing Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Grid_Printing)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.grid.printing\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Grid_Printing>
+    <PkgDevExpress_WindowsDesktop_Wpf_ExpressionEditor Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_ExpressionEditor)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.expressioneditor\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_ExpressionEditor>
+    <PkgDevExpress_WindowsDesktop_Wpf_Grid Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Grid)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.grid\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Grid>
+    <PkgDevExpress_WindowsDesktop_Wpf_PivotGrid Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_PivotGrid)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.pivotgrid\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_PivotGrid>
+    <PkgDevExpress_WindowsDesktop_Wpf_Diagram Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Diagram)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.diagram\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Diagram>
+    <PkgDevExpress_WindowsDesktop_Wpf_Reporting Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Reporting)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.reporting\19.2.7-ctp</PkgDevExpress_WindowsDesktop_Wpf_Reporting>
+    <PkgDevExpress_WindowsDesktop_Wpf_PdfViewer Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_PdfViewer)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.pdfviewer\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_PdfViewer>
+    <PkgDevExpress_WindowsDesktop_Wpf_Map Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Map)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.map\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Map>
+    <PkgDevExpress_WindowsDesktop_Wpf_Carousel Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Carousel)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.carousel\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Carousel>
+    <PkgDevExpress_WindowsDesktop_Wpf_Accordion Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Accordion)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.accordion\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Accordion>
+    <PkgDevExpress_WindowsDesktop_Wpf_Scheduler Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Scheduler)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.scheduler\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Scheduler>
+    <PkgDevExpress_WindowsDesktop_Wpf_PrismAdapters Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_PrismAdapters)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.prismadapters\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_PrismAdapters>
+    <PkgDevExpress_WindowsDesktop_Wpf_Navigation Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Navigation)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.navigation\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Navigation>
+    <PkgDevExpress_WindowsDesktop_Wpf_Layout Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Layout)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.layout\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Layout>
+    <PkgDevExpress_WindowsDesktop_Wpf_Gauges Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Gauges)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.gauges\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Gauges>
+    <PkgDevExpress_WindowsDesktop_Wpf_Gantt Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Gantt)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.gantt\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Gantt>
+    <PkgDevExpress_WindowsDesktop_Wpf_Dialogs Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf_Dialogs)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf.dialogs\19.2.7</PkgDevExpress_WindowsDesktop_Wpf_Dialogs>
+    <PkgDevExpress_WindowsDesktop_Wpf Condition=" '$(PkgDevExpress_WindowsDesktop_Wpf)' == '' ">C:\Users\AFrey\.nuget\packages\devexpress.windowsdesktop.wpf\19.2.7</PkgDevExpress_WindowsDesktop_Wpf>
+  </PropertyGroup>
+</Project>
