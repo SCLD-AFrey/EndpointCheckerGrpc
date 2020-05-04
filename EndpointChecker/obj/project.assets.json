@@ -400,6 +400,10 @@
     ".NETCoreApp,Version=v3.1": [
       "Google.Protobuf >= 3.11.4",
       "Grpc >= 2.28.1",
+<<<<<<< HEAD
+=======
+      "Grpc.Core >= 2.28.1",
+>>>>>>> master
       "Grpc.Net.Client >= 2.28.0",
       "Grpc.Tools >= 2.28.1",
       "Newtonsoft.Json >= 12.0.3"
@@ -461,6 +465,13 @@
             "target": "Package",
             "version": "[2.28.1, )"
           },
+<<<<<<< HEAD
+=======
+          "Grpc.Core": {
+            "target": "Package",
+            "version": "[2.28.1, )"
+          },
+>>>>>>> master
           "Grpc.Net.Client": {
             "target": "Package",
             "version": "[2.28.0, )"
