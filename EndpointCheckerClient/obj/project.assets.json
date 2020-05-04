@@ -1617,6 +1617,7 @@
         "dependencies": {
           "Google.Protobuf": "3.11.4",
           "Grpc": "2.28.1",
+          "Grpc.Core": "2.28.1",
           "Grpc.Net.Client": "2.28.0",
           "Newtonsoft.Json": "12.0.3"
         },
