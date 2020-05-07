@@ -48,7 +48,7 @@ namespace EndpointCheckerServer
             var reply = new EndpointReply
             {
                 StartTime = DateTime.Now.ToString(),
-                Success = true,
+                Success = true
             };
 
             // DO TESTS

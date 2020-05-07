@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "I3HwRC/TTCGnkPa1T3OMKZXa5F8GzyVBtynMi2pRlNe2S6ONSO8d0GFf2nZ4Y+l8+xsKkojG0o76Q2X+F8ZG2Q==",
+  "dgSpecHash": "6NkawSzMqK5iMmW+Rlt2YY4eOdCPtDKuqOTQ+v5ORfx20V7/tFlS5AnuO5TPPlJzBIBZrcc4/t+T6T2dJ1c01w==",
   "success": true,
   "projectFilePath": "C:\\Users\\AFrey\\Documents\\Development\\SCLD-AFrey\\EndpointCheckerGrpc\\EndpointCheckerClient\\EndpointCheckerClient.csproj",
   "expectedPackageFiles": [
