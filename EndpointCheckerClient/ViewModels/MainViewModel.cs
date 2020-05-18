@@ -30,7 +30,7 @@ namespace EndpointCheckerClient.ViewModels
         {
             //Config
             Host = "127.0.0.1";
-            Port = "50051";
+            Port = "5051";
             string jsonFile = "../../../../EndpointChecker/endpoint-list.json";
 
             //Load initial json file

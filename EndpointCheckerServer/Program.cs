@@ -15,7 +15,7 @@ namespace EndpointCheckerServer
         class Program
         {
             const string Host = "127.0.0.1";
-            const int Port = 50051;
+            const int Port = 5051;
 
             public static void Main(string[] args)
             {
