@@ -11,6 +11,7 @@ package EndpointChecker;
 service EndpointChecker {
   rpc CheckEndpoint (EndpointRequest) returns (EndpointReply) {}
   rpc CheckEndpointList (EndpointListRequest) returns (EndpointListReply) {}
+  rpc TestTaskDoesNothing (TestRequest) returns (TestReply) {}
 }
 
 // userful https://developers.google.com/protocol-buffers/docs/proto3
@@ -37,3 +38,11 @@ message EndpointListReply{
 	string StartTime = 3;
 	string EndTime = 4;
 }
+message TestRequest{
+	string message = 1;
+}
+
+message TestReply{
+	string message = 1;
+}
+

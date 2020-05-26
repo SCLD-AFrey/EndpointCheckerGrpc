@@ -30,7 +30,7 @@ namespace EndpointCheckerClient.ViewModels
         {
             //Config
             Host = "127.0.0.1";
-            Port = "5051";
+            Port = "5001";
             string jsonFile = "../../../../EndpointChecker/endpoint-list.json";
 
             //Load initial json file
@@ -38,7 +38,7 @@ namespace EndpointCheckerClient.ViewModels
             {
                 endpointJson = r.ReadToEnd();
             }
-            CreateChannel();
+            //CreateChannel();
 
         }
 
@@ -60,12 +60,15 @@ namespace EndpointCheckerClient.ViewModels
         public virtual string Port { get; set; }
 
         #endregion
-
+        /*
         public void CreateChannel()
         {
             channel = new Channel(string.Concat(Host, ":", Port), ChannelCredentials.Insecure); //--- without SSL
             client = new EndpointChecker.EndpointChecker.EndpointCheckerClient(channel);
+
+            var state = channel.State;
         }
+        */
 
         #region Methods
         public void OnProcessButtonCommand()
@@ -95,8 +98,15 @@ namespace EndpointCheckerClient.ViewModels
 
             try
             {
+                var secureChanel = new SslCredentials();
+                channel = new Channel(string.Concat(Host, ":", Port), secureChanel); //--- without SSL
+                //channel = new Channel(string.Concat(Host, ":", Port), ChannelCredentials.Insecure); //--- without SSL
+                client = new EndpointChecker.EndpointChecker.EndpointCheckerClient(channel);
+
                 var endpointrequest = new EndpointRequest
                     {Name = endpointItem.Name, IPaddress = endpointItem.IPaddress, Platform = endpointItem.Platform};
+
+                var state = channel.State;
                 var reply = client.CheckEndpointAsync(endpointrequest).ResponseAsync.Result;
  
                 endpointItem.Success = reply.Success;
@@ -106,7 +116,9 @@ namespace EndpointCheckerClient.ViewModels
             }
             catch (Exception e)
             {
+                var state = channel.State;
                 endpointItem.Success = false;
+                endpointItem.ErrorMessage = e.Message;
             }
 
 

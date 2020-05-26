@@ -10,12 +10,12 @@ using Newtonsoft.Json;
 
 namespace EndpointCheckerServer
 {
-    class EndpointCheckerImpl : EndpointChecker.EndpointChecker.EndpointCheckerBase
+    public class EndpointCheckerImpl : EndpointChecker.EndpointChecker.EndpointCheckerBase
     {
         class Program
         {
             const string Host = "127.0.0.1";
-            const int Port = 5051;
+            const int Port = 5001;
 
             public static void Main(string[] args)
             {

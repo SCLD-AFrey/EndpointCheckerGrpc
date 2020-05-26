@@ -10,6 +10,7 @@ namespace EndpointChecker
         public bool Success;
         public DateTime StartTime;
         public DateTime EndTime;
+        public string ErrorMessage;
 
         public void Process()
         {
